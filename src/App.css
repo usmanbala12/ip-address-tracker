@@ -12,6 +12,9 @@
 
 .header form {
   width: 30%;
+  position: absolute;
+  top: 10%;
+  height: 2em;
 }
 
 .header-title {

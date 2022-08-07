@@ -64,7 +64,7 @@ function App() {
               Timezone
             </span>
             <span className='info'>
-            {ipData ? ipData.location.timezone : ''}
+            GMT {ipData ? ipData.location.timezone : ''}
             </span>
           </div>
           <div className='isp'>
