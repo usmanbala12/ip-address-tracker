@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import Loader from './components/Loader';
+import arrow from './images/icon-arrow.svg'
 
 function App() {
   const [userIp, setUserIp] = useState('')
@@ -37,10 +39,15 @@ function App() {
 
   return (
     <div>
-      <div className='header'>
+      {ipData === null ? 
+          <Loader />
+              : 
+          <div>
+                <div className='header'>
         <span className='header-title'>IP Address Tracker</span>
         <form onSubmit={handleSubmit}>
           <input placeholder='search for any ip address or domain' name='ip-input' onChange={({target}) => setUserIp(target.value)} value={userIp}/>
+          <button className='submit'><img src={arrow} alt='arrow'/></button>
         </form>
         <div className='ip-details'>
           <div className='ipaddress'>
@@ -79,11 +86,13 @@ function App() {
       </div>
       <div className='map-wrap'>
         {ipData === null ? 
-          <MapRenderer lat={0} lng={0}/>
+          <Loader />
               : 
           <MapRenderer lat={ipData.location.lat} lng={ipData.location.lng}/>
         }
       </div>
+          </div>
+        }
     </div>
   );
 }
